@@ -50,6 +50,8 @@
 #define ECL_ROLL_CONTROLLER_H
 
 #include "ecl_controller.h"
+#include <drivers/drv_hrt.h>
+#include <systemlib/mavlink_log.h>
 
 class ECL_RollController :
 	public ECL_Controller
@@ -61,6 +63,9 @@ public:
 	float control_attitude(const float dt, const ECL_ControlData &ctl_data) override;
 	float control_euler_rate(const float dt, const ECL_ControlData &ctl_data) override;
 	float control_bodyrate(const float dt, const ECL_ControlData &ctl_data) override;
+private:
+	hrt_abstime _time_last_alt_announced{0};
+	orb_advert_t	_mavlink_log_pub;	///< mavlink log pub
 };
 
 #endif // ECL_ROLL_CONTROLLER_H

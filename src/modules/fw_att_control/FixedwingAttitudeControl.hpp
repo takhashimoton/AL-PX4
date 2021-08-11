@@ -66,6 +66,7 @@
 #include <uORB/topics/vehicle_land_detected.h>
 #include <uORB/topics/vehicle_rates_setpoint.h>
 #include <uORB/topics/vehicle_status.h>
+#include <systemlib/mavlink_log.h>
 
 using matrix::Eulerf;
 using matrix::Quatf;
@@ -120,6 +121,9 @@ private:
 	vehicle_local_position_s		_local_pos {};		/**< local position */
 	vehicle_rates_setpoint_s		_rates_sp {};		/* attitude rates setpoint */
 	vehicle_status_s			_vehicle_status {};	/**< vehicle status */
+
+	orb_advert_t	_mavlink_log_pub;	///< mavlink log pub
+	hrt_abstime 	_time_last_alt_announced{0};
 
 	perf_counter_t	_loop_perf;			/**< loop performance counter */
 
