@@ -43,8 +43,6 @@
 #include <lib/ecl/geo/geo.h>
 #include <mathlib/mathlib.h>
 
-using namespace time_literals;
-
 float ECL_RollController::control_attitude(const float dt, const ECL_ControlData &ctl_data)
 {
 	/* Do not calculate control signal with bad inputs */
@@ -60,9 +58,9 @@ float ECL_RollController::control_attitude(const float dt, const ECL_ControlData
 	/*  Apply P controller: rate setpoint from current error and time constant */
 	_rate_setpoint = roll_error / _tc;
 
-	int roll_deg = int(math::degrees(ctl_data.roll));
+	int roll_deg = (int)(math::degrees(ctl_data.roll));
 
-	if ((roll_deg < -20 || 20 < roll_deg) && (hrt_absolute_time() - _time_last_alt_announced > 3_s)){
+	if ((roll_deg < -20 || 20 < roll_deg) && (hrt_absolute_time() - _time_last_alt_announced > 3000000)){
 		mavlink_log_info(&_mavlink_log_pub,"#bank angle");
 		_time_last_alt_announced = hrt_absolute_time();
 	}

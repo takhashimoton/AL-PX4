@@ -122,7 +122,7 @@ private:
 	vehicle_rates_setpoint_s		_rates_sp {};		/* attitude rates setpoint */
 	vehicle_status_s			_vehicle_status {};	/**< vehicle status */
 
-	orb_advert_t	_mavlink_log_pub;	///< mavlink log pub
+	orb_advert_t	_mavlink_log_pub{nullptr};	///< mavlink log pub
 	hrt_abstime 	_time_last_alt_announced{0};
 
 	perf_counter_t	_loop_perf;			/**< loop performance counter */

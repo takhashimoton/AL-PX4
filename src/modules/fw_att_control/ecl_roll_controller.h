@@ -65,7 +65,7 @@ public:
 	float control_bodyrate(const float dt, const ECL_ControlData &ctl_data) override;
 private:
 	hrt_abstime _time_last_alt_announced{0};
-	orb_advert_t	_mavlink_log_pub;	///< mavlink log pub
+	orb_advert_t	_mavlink_log_pub{nullptr};	///< mavlink log pub
 };
 
 #endif // ECL_ROLL_CONTROLLER_H

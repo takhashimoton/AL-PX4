@@ -272,7 +272,7 @@ float FixedwingAttitudeControl::get_airspeed_and_update_scaling()
 	_airspeed_scaling = (_param_fw_arsp_scale_en.get()) ? (_param_fw_airspd_trim.get() / airspeed_constrained) : 1.0f;
 
 	if(hrt_absolute_time() - _time_last_alt_announced > 4_s){
-		mavlink_log_info(&_mavlink_log_pub,"#%d",int(_airspeed_validated_sub.get().equivalent_airspeed_m_s));
+		mavlink_log_info(&_mavlink_log_pub,"#%d",(int)_airspeed_validated_sub.get().equivalent_airspeed_m_s);
 		_time_last_alt_announced = hrt_absolute_time();;
 	}
 
